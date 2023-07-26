@@ -2,11 +2,9 @@ const {
   setWorldConstructor,
   World,
   Before,
-  After
+  After,
 } = require("@cucumber/cucumber");
-const {
-  chromium
-} = require('playwright')
+const { chromium } = require("playwright");
 
 class CustomWorld extends World {
   async setTestStatus(status, remark) {
@@ -16,17 +14,15 @@ class CustomWorld extends World {
 
 Before(async (scenario) => {
   const caps = {
-    browser: 'chrome',
-    os: 'osx',
-    os_version: 'catalina',
-    name: 'My first playwright test',
-    build: 'playwright-build-1-Adit',
-    'browserstack.username': process.env.BROWSERSTACK_USERNAME || 'YOUR_USERNAME',
-    'browserstack.accessKey': process.env.BROWSERSTACK_ACCESS_KEY || 'YOUR_ACCESS_KEY',
-    //'client.playwrightVersion':'1.17.2'
-
-  }
-
+    browser: "chrome",
+    os: "Windows",
+    os_version: "11",
+    name: "My first playwright test",
+    build: "playwright cucumber New",
+    "browserstack.username": process.env.BROWSERSTACK_USERNAME,
+    "browserstack.accessKey": process.env.BROWSERSTACK_ACCESS_KEY,
+    "client.playwrightVersion": "1.34.3",
+  };
   // Create page and browser globals to be used in the scenarios
   global.vBrowser = await chromium.connect({
     wsEndpoint:
@@ -37,10 +33,10 @@ Before(async (scenario) => {
   const context = await global.vBrowser.newContext();
 
   global.page = await context.newPage();
-})
+});
 
 After(async () => {
-  //await global.vbrowser.close()
-})
+  await vBrowser.close();
+});
 
 setWorldConstructor(CustomWorld);

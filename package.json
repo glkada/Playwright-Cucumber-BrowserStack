@@ -11,6 +11,6 @@
   "dependencies": {
     "@cucumber/cucumber": "^8.5.3",
     "@playwright/test": "^1.25.2",
-    "playwright": "^1.17.2"
+    "playwright": "^1.34.3"
   }
 }
